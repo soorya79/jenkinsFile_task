@@ -11,12 +11,15 @@ node {
 	stage 'Check for playbook'
 	
 	if (fileExists('task1.yml')) {
-    	echo 'Yes'
+    	echo 'Playbook exists'
 	} 
 	else 
 	{
-    	echo 'No'
+    	echo 'Playbook doesnot exists'
 	}
+	
+	stage 'Execute playbook'
+	sh 'ansible-playbook task1.yml'
 	
 	
 }
