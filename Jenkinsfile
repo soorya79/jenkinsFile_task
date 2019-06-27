@@ -1,7 +1,7 @@
 node {
 	stage 'Checkout'
 	
-    checkout scm
+        checkout scm
 	
 	stage 'Syntax Check'
 	
