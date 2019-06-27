@@ -1,5 +1,6 @@
 
 node {
+     try {
 	stage 'Checkout'
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/soorya79/jenkinsFile_task.git']]])
 
@@ -18,8 +19,13 @@ node {
 
 	stage 'Execute playbook'
 		sh 'ansible-playbook task1.yml'
-		
-   	echo "BUILD RESULT: ${currentBuild.result}"
+	
+	currentBuild.result = 'SUCCESS'
+	}
+	catch(Exception err) {
+        currentBuild.result = 'FAILURE'
+    	}
+   echo "BUILD RESULT: ${currentBuild.result}"
 	
 	
 	
