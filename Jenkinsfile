@@ -10,7 +10,7 @@ node {
 	
 	stage 'Check for playbook'
 	
-	if (fileExists('file')) {
+	if (fileExists('task1.yml')) {
     	echo 'Yes'
 	} 
 	else 
