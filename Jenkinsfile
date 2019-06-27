@@ -22,7 +22,7 @@ node {
 		
 		sh 'ansible-playbook task1.yml'
 		
-   	 	echo "BUILD RESULT: ${currentBuild.result}"
+   	 echo "BUILD RESULT: ${currentBuild.result}"
 	
 	
 	
