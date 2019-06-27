@@ -2,15 +2,10 @@
 ---
 - hosts: localhost
   tasks:
-    - name: "Create a log file"
-      file:
-        path: "/home/ubuntu/{{ ansible_hostname }}"
-        state: touch
-      
-    - name: "line insert"
-      lineinfile:
-        insertbefore: BOF
-        line: "Added a Line in this file... "
-        path: "/home/ubuntu/{{ ansible_hostname }}"
+    - name: Debug
+      debug:
+        msg: "hello playbook"
+        
+
       
 ...
