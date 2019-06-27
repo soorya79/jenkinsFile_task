@@ -1,25 +1,33 @@
 
 node {
-	stage 'Checkout'
+      try {
+	    	stage 'Checkout'
 	
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/soorya79/jenkinsFile_task.git']]])
+        	checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/soorya79/jenkinsFile_task.git']]])
 	 
-	stage 'Syntax Check'
+		stage 'Syntax Check'
 	
-	sh 'ansible-playbook --syntax-check ./task1.yml' 
+		sh 'ansible-playbook --syntax-check ./task1.yml' 
 	
-	stage 'Check for playbook'
+		stage 'Check for playbook'
 	
-	if (fileExists('task1.yml')) {
-    	echo 'Playbook exists'
-	} 
-	else 
-	{
-    	echo 'Playbook doesnot exists'
-	}
+		if (fileExists('task1.yml')) {
+    		echo 'Playbook exists'
+		} 
+		else 
+		{
+    		echo 'Playbook doesnot exists'
+		}
 	
-	stage 'Execute playbook'
-	sh 'ansible-playbook task1.yml'
+		stage 'Execute playbook'
+		sh 'ansible-playbook task1.yml'
+		
+		currentBuild.result = 'SUCCESS'
+	    }   catch (Exception err) {
+                currentBuild.result = 'FAILURE'
+            }
+   	 	echo "RESULT: ${currentBuild.result}"
+	
 	
 	
 }
