@@ -5,7 +5,11 @@
     - name: Debug
       debug:
         msg: "hello playbook"
-        
+    
+    - name: Create a file
+      file: 
+        path: home/ubuntu/soorya_task
+        state: touch
 
       
 ...
