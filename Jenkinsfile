@@ -20,6 +20,7 @@ node {
 		}
 	
 		stage 'Execute playbook'
+		
 		sh 'ansible-playbook task1.yml'
 		
 		currentBuild.result = 'SUCCESS'
